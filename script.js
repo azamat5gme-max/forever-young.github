@@ -12,7 +12,7 @@
     const original = button.querySelector('img');
     largePhoto.src = original.src;
     largePhoto.alt = original.alt;
-    caption.textContent = button.closest('figure').querySelector('figcaption span').textContent + ' — sample photo';
+    caption.textContent = button.closest('figure').querySelector('figcaption span').textContent + ' — пример фото';
     number.textContent = `${currentPhoto + 1} / ${photoButtons.length}`;
   }
   function closePhoto() { dialog.close(); }
@@ -41,7 +41,7 @@
     img.addEventListener('error', () => {
       img.style.opacity = '0';
       const tag = img.parentElement.querySelector('.photo-tag');
-      tag.textContent = 'OUR PHOTO IS COMING SOON';
+      tag.textContent = 'НАШЕ ФОТО СКОРО ПОЯВИТСЯ';
       img.parentElement.disabled = true;
     });
   });
@@ -57,14 +57,14 @@
   }
   document.querySelectorAll('[data-share]').forEach(button => button.addEventListener('click', async () => {
     const url = window.location.href.split('#')[0].split('?')[0];
-    const data = {title: 'Forever Young — Our Crew', text: '26 people. One unforgettable crew. Meet Forever Young.', url};
+    const data = {title: 'Forever Young — Наша компания', text: '26 друзей. Одна незабываемая компания. Знакомьтесь: Forever Young.', url};
     if (navigator.share) {
       try { await navigator.share(data); return; }
       catch (error) { if (error.name === 'AbortError') return; }
     }
     try {
       await navigator.clipboard.writeText(url);
-      notify('Link copied. Send it to the crew!');
+      notify('Ссылка скопирована. Отправь её друзьям!');
     } catch {
       shareUrl.value = url;
       fallback.hidden = false;
